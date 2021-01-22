@@ -11,11 +11,14 @@ by opening `Set Path` and choose `Add with Subfolders..`
 ![Add_Folder](App/Images/Instructions/Add_folders.png)
 
 Set current working directory to App.
+
 2. Open `Initialize.m` and run script.
 _This might not work for Win/Linux since the GUI has only been tested for_
 _MacOSX. In that case set the path to the_
 _python3 executable in the first line of the script._
+
 `pyenv("Version", "path/to/python")`
+
 _Also install packages mat4py and pyserial with pip3_
 
 3. Open `SocketSenseMainApp.mlapp` and run the App.
