@@ -1,0 +1,6 @@
+@@startuml
+Simulink --> Arduino : During Simulation Runtime: Send motor-data (pos. or velocity) via Serial-block
+Arduino --> Arduino : Timer 0, 2, 5: Read motor-data.\n Main (polling): Actuate (with controller).
+Arduino --> Simulink : Timer 3: Send force-data to Simulink. 
+Simulink --> Simulink : Use force-feedback in P-controller.\n Redo from top.
+@@enduml

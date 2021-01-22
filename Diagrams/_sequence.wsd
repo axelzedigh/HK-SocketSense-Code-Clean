@@ -1,0 +1,16 @@
+@@startuml
+'card PC as PC
+'card OpenSim as OpenSim
+'card GUI as GUI
+'card Simulink as Simulink
+'card Arduino as Arduino
+
+PC <-- OpenSim : Export data to folder \n(e.g. ../SocketSense/ExportedOpenSimData/data1.mat)
+GUI --> Simulink : <b>GUI Startup (background process)</b>\nLoad FinalSPModel.slx \nInitialize connection with Arduino (green lamp when OK)
+GUI --> Simulink : <b>Simulink-model setup</b>\nChoose OpenSim-data file from dropdown-menus\nChoose number of gaitcycles to run.\n(Optional) Choose simulation stepsize (add more options if needed).
+Simulink <-- GUI : <b>Click <i>Load OpenSim Data</i></b>\nLoad data from drop-down (e.g. data1.mat) to Simulink-model Repeated Sequence-blocks\nPlot Force/Torque data in GUI
+GUI --> Simulink : <b>Click <i>Run Simulation</i></b>\nRun the Simulink-simulation (export the logged signals to ../SocketSense/ExportedSimulinkData/data[1...6].mat)\nPlot generated actuator-data in GUI\n(If possible) Show movement of Simmechanics-model in GUI (else open window with it)
+GUI --> Simulink : <b>Click <i>Run TestRig (Force-feedback)</b>\nRun "Initialized position"-func on Arduino.\nRun script (.mat to arduino motor-matrix), send data to Arduino via serial communication.\nRun "initialized position"-func again on Arduino after fininished runnning.\nSend logged sensor-data to PC (e.g. ../SocketSense/LoggedSensorData/StrainGauge[1...6].mat) via serial.\nPlot sensor-data in GUI.
+GUI --> Simulink : <b>Click <i>Run TestRig (Demomode, position control)</i></b>\nRun position-control demo of platform (sinusodial movement?)
+
+@@enduml

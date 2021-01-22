@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle frame
+
+card "Computer" {
+card "<b>MATLAB GUI</b>\nApp Designer" as GUI
+card "<b>OpenSim</b>\nOpensim MATLAB scripting \n (not implemented)" as OpenSim
+card "<b>Simulink</b>\nSimulink model interaction" as Simulink
+card "<b>Python3</b> \n(virtual environment)" as Python
+card "<b>OS</b>" as OS
+}
+card "<b>Arduino</b>" as Arduino
+
+GUI <.--> OpenSim 
+GUI <.--> Python : Execute Python script
+GUI <.--> Simulink
+Python <.--> Arduino : Serial communication\ntx/rx data
+Python <.-> OS : Write/read files
+GUI <.--> OS
+@enduml

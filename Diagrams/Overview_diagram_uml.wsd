@@ -1,0 +1,86 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle frame
+
+card "<b>Laptop</b>\nOpenSim/MATLAB Interface" as Laptop
+
+package "MicroController" {
+card "Arduino Mega" as Arduino
+}
+
+card "Arduino Mega" as Arduino2
+
+package "Motor Drivers\n<color:grey>VNH3SP30</color>\n<color:grey>Full H bridge</color>" as MotorDrivers {
+card "MD1" as Motor1
+card "MD2" as Motor2
+card "MD3" as Motor3
+card "MD4" as Motor4
+card "MD5" as Motor5
+card "MD6" as Motor6
+}
+
+package "Linear Actuators\n<color:grey>Transmotec 24VDC 500N 1.3A</color>\n<color:grey>Potentiometer Feedback</color>" as LinearActuators {
+card M1
+card M2
+card M3
+card M4
+card M5
+card M6
+}
+
+package "Load Cells\n<color:grey>VZ101BH 100kg</color>" as LoadCells {
+card "LC1" as L1
+card "LC2" as L2
+card "LC3" as L3
+card "LC4" as L4
+card "LC5" as L5
+card "LC6" as L6
+}
+
+package "Load Cell Amplifiers/ADC\n<color:grey>Sparkfun HX711</color>" as LoadCellsAmp {
+card "LCADC1" as LCA1
+card "LCADC2" as LCA2
+card "LCADC3" as LCA3
+card "LCADC4" as LCA4
+card "LCADC5" as LCA5
+card "LCADC6" as LCA6
+}
+
+Laptop .- Arduino : Serial read/write
+
+Arduino --> Motor1
+Arduino --> Motor2
+Arduino --> Motor3
+Arduino --> Motor4
+Arduino --> Motor5
+Arduino --> Motor6
+
+Motor1 --> M1
+Motor2 --> M2
+Motor3 --> M3
+Motor4 --> M4
+Motor5 --> M5
+Motor6 --> M6
+
+M1 .-> L1
+M2 .-> L2
+M3 .-> L3
+M4 .-> L4
+M5 .-> L5
+M6 .-> L6
+
+L1 .-> LCA1
+L2 .-> LCA2
+L3 .-> LCA3
+L4 .-> LCA4
+L5 .-> LCA5
+L6 .-> LCA6
+
+LCA1 .-> Arduino2
+LCA2 .-> Arduino2
+LCA3 .-> Arduino2
+LCA4 .-> Arduino2
+LCA5 .-> Arduino2
+LCA6 .-> Arduino2
+
+@enduml
